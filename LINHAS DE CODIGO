@@ -1,0 +1,44 @@
+create table cidade(
+--criação da tabela cidades e seus atributos
+	id			integer	primary key	autoincrement,
+	nome		varchar	not null,
+	população	int
+);
+
+insert into cidade (nome, população) values
+--inserção dos dados na tabela cidades
+('São Paulo', 12300000),
+('Rio de Janeiro', 6748000),
+('Belo Horizonte', 2520000),
+('Porto Alegre', 1483000),
+('Salvador', 2872000),
+('Recife', 1646000);
+
+create table alunos(
+--criação da tabela alunos e seus atributos
+	id			integer	primary key	autoincrement,
+	nome		varchar not null,
+	data_nasc	date,
+	cidade_id	integer,
+	
+	foreign key (cidade_id) references cidade(id)
+);
+
+INSERT INTO alunos (nome, data_nasc, cidade_id) VALUES
+--sinserção dos atributos na tabela alunos
+('Yago Pinheiro', '2004-06-26', 1),
+('Maria Eduarda', '2004-12-04', 2),
+('Luiza Fracaroli', '2005-08-01', 3),
+('Gabriel Antunes', '2004-02-12', 4),
+('Italo Mateus', '2004-03-29', 5),
+('Yan Wallace', '2003-08-05', 6),
+('Mariana Almeida', '2006-11-30', 1),
+('Rafael Pereira', '2003-09-25', 2),
+('Camila Carvalho', '2005-04-18', 3),
+('Diego Oliveira', '2004-12-07', 4),
+('Juliana Lima', '2006-06-14', 5),
+('Felipe Santos', '2003-03-05', 6);
+
+
+select * from alunos inner join cidade on cidade.id = alunos.cidade_id;
+--utilização do inner join para correlacionar os alunos e suas cidades pelo id
